@@ -1,6 +1,7 @@
 from typing import Union
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from rest_framework.authentication import SessionAuthentication
 
 from .models import Organization
@@ -11,7 +12,7 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
         return None
 
 
-def authenticate(email=None, organization=None, password=None) -> Union[None, ]:
+def authenticate(email=None, organization=None, password=None) -> Union[None, User]:
     """Function for chec
 
     Args:

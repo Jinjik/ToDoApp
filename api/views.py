@@ -14,20 +14,41 @@ from .utils import authenticate, CsrfExemptSessionAuthentication
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    """"""
+    """Class create API for ToDoApp
+    """
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = (IsAuthenticated, )
     authentication_classes = (CsrfExemptSessionAuthentication, )
 
-    def list(self, request, **kwargs):
+    def list(self, request, **kwargs) -> Response:
+        """Method for get all task list
+
+        Args:
+            request: Request data
+
+        Returns:
+            Response
+
+        """
         employees = request.user.user
         queryset = Task.objects.filter(organization=employees.login)
         serializer = TaskSerializer(queryset, many=True)
 
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, **kwargs):
+    def retrieve(self, request, pk=None, **kwargs) -> Response:
+        """Method for get task on id
+
+        Args:
+            request: Request data
+            pk: id task
+            **kwargs:
+
+        Returns:
+            Response
+
+        """
         employees = request.user.user
         queryset = Task.objects.filter(organization=employees.login)
         task = get_object_or_404(queryset, pk=pk)
@@ -35,7 +56,18 @@ class TaskViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-    def destroy(self, request, *args, **kwargs):
+    def destroy(self, request, *args, **kwargs) -> Response:
+        """Method for delete task id
+
+        Args:
+            request: Request data
+            *args:
+            **kwargs:
+
+        Returns:
+            Response
+
+        """
         employees = request.user.user
         login = employees.login
         instance = self.get_object()
