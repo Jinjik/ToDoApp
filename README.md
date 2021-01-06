@@ -58,12 +58,12 @@ PUT-запрос (Все параметры должны присутствов�
 
 ```json
 {
-        "id": id: int,
-        "title": "",
-        "description": "",
-        "completed": true/false,
-        "organization": 
-    },
+    "id": id: int,
+    "title": "",
+    "description": "",
+    "completed": true/false,
+    "organization": 
+},
 ```
 
 ##### Удаление записи:
